@@ -1,0 +1,88 @@
+/vendor/
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Laravel 4 specific
+bootstrap/compiled.php
+app/storage/
+
+# Laravel 5 & Lumen specific
+public/storage
+public/hot
+
+# Laravel 5 & Lumen specific with changed public path
+public_html/storage
+public_html/hot
+
+storage/*.key
+.env
+Homestead.yaml
+Homestead.json
+/.vagrant
+.phpunit.result.cache
+
+/public/build
+/storage/pail
+.env.backup
+.env.production
+.phpactor.json
+auth.json
+
+
+# Laravel-specific
+/vendor/
+node_modules/
+.env
+.env.*
+/storage/*.key
+/public/storage
+/public/hot
+/public/*.map
+/public/mix-manifest.json
+
+# Ignoring cache and logs
+/storage/*.key
+/storage/debugbar/*
+/storage/framework/cache/*
+/storage/framework/sessions/*
+/storage/framework/testing/*
+/storage/framework/views/*
+/storage/logs/*
+/bootstrap/cache/*
+
+# Ignoring IDE-specific files
+.idea/
+.vscode/
+*.sublime-workspace
+*.sublime-project
+
+# Ignoring OS-generated files
+.DS_Store
+Thumbs.db
+*.swp
+*.swm
+
+# Ignoring Composer and NPM lock files if you don't want to track changes in dependencies
+# (Optional, depends on team policy)
+composer.lock
+package-lock.json
+
+# Ignoring testing-related files
+phpunit.xml
+.phpunit.result.cache
+
+# Ignoring Laravel Mix cache
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignoring Deployment-related files
+Homestead.json
+Homestead.yaml
+.env.backup
+.env.testing
+
+# Other general exclusions
+*.log
+*.sqlite
