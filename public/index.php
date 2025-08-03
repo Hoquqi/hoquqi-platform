@@ -6,6 +6,9 @@ use Illuminate\Http\Request;
 define('LARAVEL_START', microtime(true));
 if(! defined('STDIN')) define('STDIN', fopen("php://stdin","r"));
 
+// Suppress deprecation warnings
+error_reporting(E_ALL & ~E_DEPRECATED);
+
 /*
 |--------------------------------------------------------------------------
 | Check If The Application Is Under Maintenance

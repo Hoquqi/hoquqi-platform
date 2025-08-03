@@ -200,32 +200,31 @@
 
                 </div>
 
-                {{-- Change langauge --}}
-                @if (settings('general')->is_language_switcher)
-                    @livewire('main.partials.languages')
-                @endif
 
                 {{-- Become a seller --}}
+                {{-- Hidden: Join our legal team button for desktop guests
                 @guest
                     <a href="{{ url('start_selling') }}" class="text-gray-500 hover:text-primary-600 transition-colors duration-300 py-2 px-4 hidden md:block dark:text-gray-100 dark:hover:text-white">
                         @lang('messages.t_become_a_seller')
                     </a>
                 @endguest
+                --}}
 
-                {{-- Switch buying/selling --}}
+                {{-- Switch buying/selling - Hidden for now --}}
+                {{--
                 @auth
                     
-                    {{-- Check account type --}}
+                    Check account type
                     @if (auth()->user()->account_type === 'seller' && !Illuminate\Support\Str::of(request()->path())->startsWith('seller'))
                         
-                        {{-- Switch selling --}}
+                        Switch selling
                         <a href="{{ url('seller/home') }}" class="text-primary-600 hover:text-primary-700 transition-colors duration-300 py-2 px-4 hidden lg:block dark:text-gray-100 dark:hover:text-white">
                             @lang('messages.t_switch_to_selling')
                         </a>
 
                     @elseif (auth()->user()->account_type === 'seller' && Illuminate\Support\Str::of(request()->path())->startsWith('seller'))
 
-                        {{-- Switch buying --}}
+                        Switch buying
                         <a href="{{ url('/') }}" class="text-primary-600 hover:text-primary-700 transition-colors duration-300 py-2 px-4 hidden lg:block dark:text-gray-100 dark:hover:text-white">
                             @lang('messages.t_switch_to_buying')
                         </a>
@@ -233,6 +232,7 @@
                     @endif
 
                 @endauth
+                --}}
 
                 {{-- Sign in --}}
                 @guest
@@ -250,6 +250,11 @@
 
                 {{-- Mobile search --}}
                 @livewire('main.partials.search')
+
+                {{-- Change langauge --}}
+                @if (settings('general')->is_language_switcher)
+                    @livewire('main.partials.languages')
+                @endif
 
                 {{-- Cart --}}
                 @livewire('main.partials.cart')
@@ -341,7 +346,8 @@
 
                                     {{-- Buyer --}}
                                     @if (auth()->user()->account_type === 'buyer')
-                                        {{-- Become a seller --}}
+                                        {{-- Become a seller - Hidden: Join our legal team button in dropdown --}}
+                                        {{--
                                         <a href="{{ url('start_selling') }}"
                                             class="group flex items-center py-1.5 group-hover:text-primary-600">
                                             <svg xmlns="http://www.w3.org/2000/svg"
@@ -353,6 +359,7 @@
                                             <span
                                                 class="font-semibold text-xs text-gray-700 dark:text-gray-100 group-hover:text-primary-600 dark:group-hover:text-primary-500">{{ __('messages.t_become_a_seller') }}</span>
                                         </a>
+                                        --}}
                                     @endif
 
                                     {{-- Freelancer --}}
@@ -710,12 +717,14 @@
                         </a>
                     @endguest
 
-                    {{-- Become seller --}}
+                    {{-- Become seller - Hidden: Join our legal team button for mobile menu --}}
+                    {{--
                     @if (auth()->guest() || ( auth()->check() && auth()->user()->account_type !== 'seller' ))
                         <a href="{{ url('start_selling') }}" class="py-2 px-5 block text-gray-500 dark:text-gray-200 font-semibold text-sm">
                             @lang('messages.t_become_a_seller')
                         </a>
                     @endif
+                    --}}
 
                     {{-- Explore gigs --}}
                     <a href="{{ url('search') }}" class="py-2 px-5 block text-gray-500 dark:text-gray-200 font-semibold text-sm">
@@ -811,8 +820,8 @@
                         {{-- Change link --}}
                         <a href="javascript:void(0)" class="py-2 px-5 text-gray-500 dark:text-gray-200 font-semibold text-sm flex items-center space-x-3 rtl:space-x-reverse relative z-1" x-on:click="open = !open">
                             <span class="grow flex items-center">
-                                <svg class="w-[18px] h-[18px] ltr:mr-2.5 rtl:ml-2.5" stroke="currentColor" fill="currentColor" stroke-width="0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.486 2 2 6.486 2 12s4.486 10 10 10 10-4.486 10-10S17.514 2 12 2zm7.931 9h-2.764a14.67 14.67 0 0 0-1.792-6.243A8.013 8.013 0 0 1 19.931 11zM12.53 4.027c1.035 1.364 2.427 3.78 2.627 6.973H9.03c.139-2.596.994-5.028 2.451-6.974.172-.01.344-.026.519-.026.179 0 .354.016.53.027zm-3.842.7C7.704 6.618 7.136 8.762 7.03 11H4.069a8.013 8.013 0 0 1 4.619-6.273zM4.069 13h2.974c.136 2.379.665 4.478 1.556 6.23A8.01 8.01 0 0 1 4.069 13zm7.381 6.973C10.049 18.275 9.222 15.896 9.041 13h6.113c-.208 2.773-1.117 5.196-2.603 6.972-.182.012-.364.028-.551.028-.186 0-.367-.016-.55-.027zm4.011-.772c.955-1.794 1.538-3.901 1.691-6.201h2.778a8.005 8.005 0 0 1-4.469 6.201z"></path></svg>
-                                {{ $default_language_name }}
+                                <img src="{{ placeholder_img() }}" data-src="{{ countryFlag($default_country_code) }}" alt="{{ $default_language_name }}" class="lazy w-[18px] h-[18px] ltr:mr-2.5 rtl:ml-2.5">
+                                <span class="ltr:ml-1 rtl:mr-1">@lang('messages.t_language')</span>
                             </span>
                             <span x-bind:class="{ 'rotate-90': !open, 'rotate-0': open }" class="transform transition ease-out duration-150 opacity-75 rotate-0">
                                 <svg fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" class="hi-solid hi-chevron-down inline-block w-4 h-4"><path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
