@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('settings_general', function (Blueprint $table) {
             $table->id();
-            $table->string('title', 60)->default('Riverr');
-            $table->string('subtitle', 120)->default('Freelance Services Marketplace');
+            $table->string('title', 60)->default('Hoquqi');
+            $table->string('subtitle', 120)->default('Legal Services Marketplace');
             $table->string('separator', 5)->default('|');
             $table->foreignId('logo_id')->nullable()->references('id')->on('file_manager')->onUpdate('no action')->onDelete('no action');
             $table->foreignId('favicon_id')->nullable()->references('id')->on('file_manager')->onUpdate('no action')->onDelete('no action');

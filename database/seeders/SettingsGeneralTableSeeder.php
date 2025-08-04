@@ -19,8 +19,8 @@ class SettingsGeneralTableSeeder extends Seeder
             0 => 
             array (
                 'id'                   => 1,
-                'title'                => 'Riverr',
-                'subtitle'             => 'Freelance Services Marketplace',
+                'title'                => 'Hoquqi',
+                'subtitle'             => 'Legal Services Marketplace',
                 'separator'            => '|',
                 'logo_id'              => NULL,
                 'logo_dark_id'         => NULL,
